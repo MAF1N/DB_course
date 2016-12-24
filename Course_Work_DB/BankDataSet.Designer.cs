@@ -455,10 +455,6 @@ namespace Course_Work_DB {
             
             private global::System.Data.DataColumn columnCapitalisation;
             
-            private global::System.Data.DataColumn columnLast_withdrawal;
-            
-            private global::System.Data.DataColumn columnLast_refill;
-            
             private global::System.Data.DataColumn columnUserId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -528,22 +524,6 @@ namespace Course_Work_DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Last_withdrawalColumn {
-                get {
-                    return this.columnLast_withdrawal;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Last_refillColumn {
-                get {
-                    return this.columnLast_refill;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn UserIdColumn {
                 get {
                     return this.columnUserId;
@@ -587,18 +567,16 @@ namespace Course_Work_DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountsRow AddAccountsRow(decimal Balance, string Type, short Capitalisation, System.DateTime Last_withdrawal, System.DateTime Last_refill, ClientsRow parentClientsRowByFK_Table_Clients) {
+            public AccountsRow AddAccountsRow(decimal Balance, string Type, short Capitalisation, ClientsRow parentClientsRowByFK_Table_Clients) {
                 AccountsRow rowAccountsRow = ((AccountsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Balance,
                         Type,
                         Capitalisation,
-                        Last_withdrawal,
-                        Last_refill,
                         null};
                 if ((parentClientsRowByFK_Table_Clients != null)) {
-                    columnValuesArray[6] = parentClientsRowByFK_Table_Clients[0];
+                    columnValuesArray[4] = parentClientsRowByFK_Table_Clients[0];
                 }
                 rowAccountsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAccountsRow);
@@ -633,8 +611,6 @@ namespace Course_Work_DB {
                 this.columnBalance = base.Columns["Balance"];
                 this.columnType = base.Columns["Type"];
                 this.columnCapitalisation = base.Columns["Capitalisation"];
-                this.columnLast_withdrawal = base.Columns["Last withdrawal"];
-                this.columnLast_refill = base.Columns["Last refill"];
                 this.columnUserId = base.Columns["UserId"];
             }
             
@@ -649,10 +625,6 @@ namespace Course_Work_DB {
                 base.Columns.Add(this.columnType);
                 this.columnCapitalisation = new global::System.Data.DataColumn("Capitalisation", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCapitalisation);
-                this.columnLast_withdrawal = new global::System.Data.DataColumn("Last withdrawal", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLast_withdrawal);
-                this.columnLast_refill = new global::System.Data.DataColumn("Last refill", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLast_refill);
                 this.columnUserId = new global::System.Data.DataColumn("UserId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -2185,38 +2157,6 @@ namespace Course_Work_DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Last_withdrawal {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableAccounts.Last_withdrawalColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Last withdrawal\' in table \'Accounts\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableAccounts.Last_withdrawalColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Last_refill {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableAccounts.Last_refillColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Last refill\' in table \'Accounts\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableAccounts.Last_refillColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int UserId {
                 get {
                     return ((int)(this[this.tableAccounts.UserIdColumn]));
@@ -2235,30 +2175,6 @@ namespace Course_Work_DB {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Table_Clients"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLast_withdrawalNull() {
-                return this.IsNull(this.tableAccounts.Last_withdrawalColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLast_withdrawalNull() {
-                this[this.tableAccounts.Last_withdrawalColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLast_refillNull() {
-                return this.IsNull(this.tableAccounts.Last_refillColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLast_refillNull() {
-                this[this.tableAccounts.Last_refillColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3008,53 +2924,42 @@ namespace Course_Work_DB.BankDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Balance", "Balance");
             tableMapping.ColumnMappings.Add("Type", "Type");
             tableMapping.ColumnMappings.Add("Capitalisation", "Capitalisation");
-            tableMapping.ColumnMappings.Add("Last withdrawal", "Last withdrawal");
-            tableMapping.ColumnMappings.Add("Last refill", "Last refill");
             tableMapping.ColumnMappings.Add("UserId", "UserId");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Accounts] WHERE (([Id] = @Original_Id) AND ([Balance] = @Original_Balance) AND ([Type] = @Original_Type) AND ([Capitalisation] = @Original_Capitalisation) AND ((@IsNull_Last_withdrawal = 1 AND [Last withdrawal] IS NULL) OR ([Last withdrawal] = @Original_Last_withdrawal)) AND ((@IsNull_Last_refill = 1 AND [Last refill] IS NULL) OR ([Last refill] = @Original_Last_refill)) AND ([UserId] = @Original_UserId))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Accounts] WHERE (([Id] = @Original_Id) AND ([Balance] = @Origi" +
+                "nal_Balance) AND ([Type] = @Original_Type) AND ([Capitalisation] = @Original_Cap" +
+                "italisation) AND ([UserId] = @Original_UserId))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Balance", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Type", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Capitalisation", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capitalisation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Last_withdrawal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Last_withdrawal", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Last_refill", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Last_refill", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Accounts] ([Balance], [Type], [Capitalisation], [Last withdrawal], [Last refill], [UserId]) VALUES (@Balance, @Type, @Capitalisation, @Last_withdrawal, @Last_refill, @UserId);
-SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], UserId FROM Accounts WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Accounts] ([Balance], [Type], [Capitalisation], [UserId]) VALU" +
+                "ES (@Balance, @Type, @Capitalisation, @UserId);\r\nSELECT Id, Balance, Type, Capit" +
+                "alisation, UserId FROM Accounts WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Balance", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Capitalisation", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capitalisation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_withdrawal", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_refill", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Accounts] SET [Balance] = @Balance, [Type] = @Type, [Capitalisation] = @Capitalisation, [Last withdrawal] = @Last_withdrawal, [Last refill] = @Last_refill, [UserId] = @UserId WHERE (([Id] = @Original_Id) AND ([Balance] = @Original_Balance) AND ([Type] = @Original_Type) AND ([Capitalisation] = @Original_Capitalisation) AND ((@IsNull_Last_withdrawal = 1 AND [Last withdrawal] IS NULL) OR ([Last withdrawal] = @Original_Last_withdrawal)) AND ((@IsNull_Last_refill = 1 AND [Last refill] IS NULL) OR ([Last refill] = @Original_Last_refill)) AND ([UserId] = @Original_UserId));
-SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], UserId FROM Accounts WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Accounts] SET [Balance] = @Balance, [Type] = @Type, [Capitalisation] = @Capitalisation, [UserId] = @UserId WHERE (([Id] = @Original_Id) AND ([Balance] = @Original_Balance) AND ([Type] = @Original_Type) AND ([Capitalisation] = @Original_Capitalisation) AND ([UserId] = @Original_UserId));
+SELECT Id, Balance, Type, Capitalisation, UserId FROM Accounts WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Balance", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Capitalisation", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capitalisation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_withdrawal", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_refill", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Balance", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Type", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Capitalisation", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Capitalisation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Last_withdrawal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Last_withdrawal", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Last_refill", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Last_refill", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -3072,8 +2977,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], UserI" +
-                "d FROM dbo.Accounts";
+            this._commandCollection[0].CommandText = "SELECT Id, Balance, Type, Capitalisation, UserId FROM dbo.Accounts";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -3082,33 +2986,26 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], UserI" +
-                "d FROM dbo.Accounts Where Id=@Id";
+            this._commandCollection[2].CommandText = "SELECT Balance, Capitalisation, Id, Type, UserId FROM Accounts WHERE (Id = @Id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO [Accounts] ([Balance], [Type], [Capitalisation], [Last withdrawal], [" +
-                "Last refill], [UserId]) VALUES (@Balance, @Type, @Capitalisation, @Last_withdraw" +
-                "al, @Last_refill, @UserId)";
+            this._commandCollection[3].CommandText = "INSERT INTO [Accounts] ([Balance], [Type], [Capitalisation], [UserId]) VALUES (@B" +
+                "alance, @Type, @Capitalisation, @Last_withdrawal, @Last_refill, @UserId)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Balance", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.NChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Capitalisation", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 0, 0, "Capitalisation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_withdrawal", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_refill", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_withdrawal", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = "UPDATE [dbo].[Accounts] SET [Balance] = @Balance, [Type] = @Type, [Capitalisation" +
-                "] = @Capitalisation, [Last withdrawal] = @Last_withdrawal, [Last refill] = @Last" +
-                "_refill, [UserId] = @UserId WHERE [Id] = @Id";
+                "] = @Capitalisation, [UserId] = @UserId WHERE [Id] = @Id";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Balance", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.NChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Capitalisation", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 0, 0, "Capitalisation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_withdrawal", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Last withdrawal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_refill", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Last refill", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -3196,7 +3093,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, decimal Original_Balance, string Original_Type, short Original_Capitalisation, global::System.Nullable<global::System.DateTime> Original_Last_withdrawal, global::System.Nullable<global::System.DateTime> Original_Last_refill, int Original_UserId) {
+        public virtual int Delete(int Original_Id, decimal Original_Balance, string Original_Type, short Original_Capitalisation, int Original_UserId) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((decimal)(Original_Balance));
             if ((Original_Type == null)) {
@@ -3206,23 +3103,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Type));
             }
             this.Adapter.DeleteCommand.Parameters[3].Value = ((short)(Original_Capitalisation));
-            if ((Original_Last_withdrawal.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_Last_withdrawal.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Last_refill.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_Last_refill.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_UserId));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_UserId));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3243,7 +3124,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(decimal Balance, string Type, short Capitalisation, global::System.Nullable<global::System.DateTime> Last_withdrawal, global::System.Nullable<global::System.DateTime> Last_refill, int UserId) {
+        public virtual int Insert(decimal Balance, string Type, short Capitalisation, int UserId) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((decimal)(Balance));
             if ((Type == null)) {
                 throw new global::System.ArgumentNullException("Type");
@@ -3252,19 +3133,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Type));
             }
             this.Adapter.InsertCommand.Parameters[2].Value = ((short)(Capitalisation));
-            if ((Last_withdrawal.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(Last_withdrawal.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Last_refill.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(Last_refill.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(UserId));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(UserId));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3285,7 +3154,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(decimal Balance, string Type, short Capitalisation, global::System.Nullable<global::System.DateTime> Last_withdrawal, global::System.Nullable<global::System.DateTime> Last_refill, int UserId, int Original_Id, decimal Original_Balance, string Original_Type, short Original_Capitalisation, global::System.Nullable<global::System.DateTime> Original_Last_withdrawal, global::System.Nullable<global::System.DateTime> Original_Last_refill, int Original_UserId, int Id) {
+        public virtual int Update(decimal Balance, string Type, short Capitalisation, int UserId, int Original_Id, decimal Original_Balance, string Original_Type, short Original_Capitalisation, int Original_UserId, int Id) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((decimal)(Balance));
             if ((Type == null)) {
                 throw new global::System.ArgumentNullException("Type");
@@ -3294,46 +3163,18 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Type));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(Capitalisation));
-            if ((Last_withdrawal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(Last_withdrawal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Last_refill.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(Last_refill.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(UserId));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(Original_Balance));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(UserId));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(Original_Balance));
             if ((Original_Type == null)) {
                 throw new global::System.ArgumentNullException("Original_Type");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Type));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Type));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((short)(Original_Capitalisation));
-            if ((Original_Last_withdrawal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_Last_withdrawal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Last_refill.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_Last_refill.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_UserId));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Id));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((short)(Original_Capitalisation));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_UserId));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3354,8 +3195,8 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(decimal Balance, string Type, short Capitalisation, global::System.Nullable<global::System.DateTime> Last_withdrawal, global::System.Nullable<global::System.DateTime> Last_refill, int UserId, int Original_Id, decimal Original_Balance, string Original_Type, short Original_Capitalisation, global::System.Nullable<global::System.DateTime> Original_Last_withdrawal, global::System.Nullable<global::System.DateTime> Original_Last_refill, int Original_UserId) {
-            return this.Update(Balance, Type, Capitalisation, Last_withdrawal, Last_refill, UserId, Original_Id, Original_Balance, Original_Type, Original_Capitalisation, Original_Last_withdrawal, Original_Last_refill, Original_UserId, Original_Id);
+        public virtual int Update(decimal Balance, string Type, short Capitalisation, int UserId, int Original_Id, decimal Original_Balance, string Original_Type, short Original_Capitalisation, int Original_UserId) {
+            return this.Update(Balance, Type, Capitalisation, UserId, Original_Id, Original_Balance, Original_Type, Original_Capitalisation, Original_UserId, Original_Id);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3386,7 +3227,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertQuery(decimal Balance, string Type, short Capitalisation, string Last_withdrawal, string Last_refill, int UserId) {
+        public virtual int InsertQuery(decimal Balance, string Type, short Capitalisation, int Last_withdrawal) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             command.Parameters[0].Value = ((decimal)(Balance));
             if ((Type == null)) {
@@ -3396,19 +3237,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
                 command.Parameters[1].Value = ((string)(Type));
             }
             command.Parameters[2].Value = ((short)(Capitalisation));
-            if ((Last_withdrawal == null)) {
-                command.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[3].Value = ((string)(Last_withdrawal));
-            }
-            if ((Last_refill == null)) {
-                command.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[4].Value = ((string)(Last_refill));
-            }
-            command.Parameters[5].Value = ((int)(UserId));
+            command.Parameters[3].Value = ((int)(Last_withdrawal));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3430,7 +3259,7 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(decimal Balance, string Type, short Capitalisation, string Last_withdrawal, string Last_refill, int UserId, int Id) {
+        public virtual int UpdateQuery(decimal Balance, string Type, short Capitalisation, int UserId, int Id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             command.Parameters[0].Value = ((decimal)(Balance));
             if ((Type == null)) {
@@ -3440,20 +3269,8 @@ SELECT Id, Balance, Type, Capitalisation, [Last withdrawal], [Last refill], User
                 command.Parameters[1].Value = ((string)(Type));
             }
             command.Parameters[2].Value = ((short)(Capitalisation));
-            if ((Last_withdrawal == null)) {
-                command.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[3].Value = ((string)(Last_withdrawal));
-            }
-            if ((Last_refill == null)) {
-                command.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[4].Value = ((string)(Last_refill));
-            }
-            command.Parameters[5].Value = ((int)(UserId));
-            command.Parameters[6].Value = ((int)(Id));
+            command.Parameters[3].Value = ((int)(UserId));
+            command.Parameters[4].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

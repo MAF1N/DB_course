@@ -23,14 +23,12 @@ namespace Course_Work_DB
             accountsTableAdapter.Fill(bankDataSet.Accounts);
             edit = false;
         }
-        public Account(int id,decimal balance,string type,int capital, DateTime lastw,DateTime lastR, int UserID):this()
+        public Account(int id,decimal balance,string type,int capital, int UserID):this()
         {
             this.id = id;
             balanceBox.Text = balance.ToString();
             comboBox_Type.SelectedIndex = (type == "Кредитный") ? 1 : 0;
             textBox_Capitalisation.Text = capital.ToString();
-            dateTimePicker_withdrawal.Value = lastw;
-            dateTimePicker_refill.Value = lastR;
             comboBox_UserId.Text = UserID.ToString();
             edit = true;
         }
@@ -38,8 +36,6 @@ namespace Course_Work_DB
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@date1", dateTimePicker_withdrawal.Value);
-            cmd.Parameters.AddWithValue("@date2", dateTimePicker_refill.Value);
             cmd.Parameters.AddWithValue("@bal", Convert.ToDecimal(balanceBox.Text));
             if (edit)
             {
@@ -48,8 +44,6 @@ namespace Course_Work_DB
                     "[Balance]= @bal," +
                     "[Type]= N'" + comboBox_Type.Text + "'," +
                     "[Capitalisation]=" + Convert.ToInt16(textBox_Capitalisation.Text) + "," +
-    //                "[Last withdrawal]= @date1," +
-    //                "[Last refill]= @date2, "+
                     "[UserId]="+Convert.ToInt32(comboBox_UserId.Text)+
                     "Where Id=" + this.id;
 
@@ -57,8 +51,6 @@ namespace Course_Work_DB
                     Convert.ToDecimal(balanceBox.Text),
                     comboBox_Type.Text,
                     Convert.ToInt16(textBox_Capitalisation.Text),
-                    dateTimePicker_withdrawal.Value.ToString(),
-                    dateTimePicker_refill.Value.ToString(),
                     Convert.ToInt32(comboBox_UserId.SelectedValue.ToString()),
                     this.id
                     );
@@ -71,15 +63,12 @@ namespace Course_Work_DB
                     "@bal, N'" +
                     comboBox_Type.Text.ToString() + "'," +
                     Convert.ToInt16(textBox_Capitalisation.Text) + "," +
-                    "@date1, @date2," +
                     Convert.ToInt32(comboBox_UserId.SelectedValue) + ")";
 
                 accountsTableAdapter.InsertQuery(
                     Convert.ToDecimal(balanceBox.Text),
                     comboBox_Type.Text.ToString(),
                     Convert.ToInt16(textBox_Capitalisation.Text),
-                    dateTimePicker_withdrawal.Value.ToString(),
-                    dateTimePicker_refill.Value.ToString(),
                     Convert.ToInt32(comboBox_UserId.SelectedValue)
                     );
             }

@@ -32,20 +32,28 @@ namespace Course_Work_DB
             }
             else
             {
-                //try
-                //{
+                try
+                {
                     SqlConnection sqlconn = new SqlConnection(ConnectionString);
                     SqlCommand cmd = new SqlCommand();
                     bool temp = true;
                     SqlCommand cmd2 = new SqlCommand();
                     cmd2.Connection = sqlconn;
-                    if (accIdCombo.SelectedText.Contains("Снятие"))
+                    cmd2.Parameters.Clear();
+                    cmd2.Parameters.AddWithValue("@bal", Convert.ToDecimal(textBox1.Text));
+                    if (typeCombo.Text.Contains("Снятие"))
                     {
                         temp = false;
-                        cmd2.CommandText = "Update Accounts Set Balance=Balance-" + Convert.ToDouble(textBox1.Text) + " Where Id=" + Convert.ToInt32(accIdCombo.Text);
+                        cmd2.CommandText = "Update Accounts Set Balance=Balance- @bal Where Id=" + Convert.ToInt32(accIdCombo.Text);
+                        accountsTableAdapter.UpdateBalanceMinus(Convert.ToDecimal(textBox1.Text), Convert.ToInt32(accIdCombo.Text));
                     }
-                    else  cmd2.CommandText= "Update Accounts Set Balance=Balance+" + Convert.ToDouble(textBox1.Text) + " Where Id=" + Convert.ToInt32(accIdCombo.Text);
-                    cmd.CommandText = "Insert INTO Operations (Type,Amount,Account_Id,Income) Values('" + typeCombo.SelectedText + "'," +
+                    else
+                    {
+                        cmd2.CommandText = "Update Accounts Set Balance=Balance+ @bal Where Id=" + Convert.ToInt32(accIdCombo.Text);
+                        accountsTableAdapter.UpdateBalanceAdd(Convert.ToDecimal(textBox1.Text), Convert.ToInt32(accIdCombo.Text));
+                    }
+                    cmd.CommandText = "Insert INTO Operations (Type,Amount,Account_Id,Income) Values(N'" +
+                        typeCombo.Text + "'," +
                         Convert.ToDouble(textBox1.Text) + "," +
                         accIdCombo.SelectedValue + ",'" +
                         temp + "')";
@@ -54,11 +62,11 @@ namespace Course_Work_DB
                     cmd.ExecuteNonQuery();
                     cmd2.ExecuteNonQuery();
                     sqlconn.Close();
-                //}
-/*                catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(@"ERROR: " + ex.Message);
-                }*/
+                }
                 Close();
             }
         }
@@ -71,10 +79,13 @@ namespace Course_Work_DB
             this.accountsTableAdapter.Fill(this.bankDataSet.Accounts);
             accIdCombo.SelectedValue = 0;
             typeCombo.SelectedValue = 0;
+           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            accountsBindingSource.DataSource = bankDataSet.Accounts;
+            accountsBindingSource.Filter = accIdCombo.Text;
         }
     }
 }
