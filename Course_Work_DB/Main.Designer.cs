@@ -31,18 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthdayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.MainBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bankDataSet = new Course_Work_DB.BankDataSet();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.MainBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bankDataSet1 = new Course_Work_DB.BankDataSet();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -56,7 +47,6 @@
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.formToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendEmailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,10 +73,6 @@
             this.updateInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.accountsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.agreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.branchesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.managersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label_Current_Base = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBoxSearchBy = new System.Windows.Forms.ComboBox();
@@ -95,116 +81,47 @@
             this.comboBox_Filter = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.accountsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.agreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.branchesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.managersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.operationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.accountsTableAdapter = new Course_Work_DB.BankDataSetTableAdapters.AccountsTableAdapter();
             this.agreementTableAdapter = new Course_Work_DB.BankDataSetTableAdapters.AgreementTableAdapter();
             this.branchesTableAdapter = new Course_Work_DB.BankDataSetTableAdapters.BranchesTableAdapter();
-            this.clientsTableAdapter = new Course_Work_DB.BankDataSetTableAdapters.ClientsTableAdapter();
             this.managersTableAdapter = new Course_Work_DB.BankDataSetTableAdapters.ManagersTableAdapter();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.accountsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.operationsTableAdapter = new Course_Work_DB.BankDataSetTableAdapters.OperationsTableAdapter();
+            this.clientsTableAdapter = new Course_Work_DB.BankDataSetTableAdapters.ClientsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MainBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankDataSet1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accountsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.branchesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.accountsBindingSource1)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.operationsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.genderDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.phoneDataGridViewTextBoxColumn,
-            this.birthdayDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.clientsBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 162);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(522, 140);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataGridView1_SortCompare);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "Full Name";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Full Name";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            // 
-            // genderDataGridViewTextBoxColumn
-            // 
-            this.genderDataGridViewTextBoxColumn.DataPropertyName = "Gender";
-            this.genderDataGridViewTextBoxColumn.HeaderText = "Gender";
-            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
-            // 
-            // cityDataGridViewTextBoxColumn
-            // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            // 
-            // birthdayDataGridViewTextBoxColumn
-            // 
-            this.birthdayDataGridViewTextBoxColumn.DataPropertyName = "Birthday";
-            this.birthdayDataGridViewTextBoxColumn.HeaderText = "Birthday";
-            this.birthdayDataGridViewTextBoxColumn.Name = "birthdayDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "E-mail";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "E-mail";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // clientsBindingSource
-            // 
-            this.clientsBindingSource.DataMember = "Clients";
-            this.clientsBindingSource.DataSource = this.MainBindingSource;
-            // 
-            // MainBindingSource
-            // 
-            this.MainBindingSource.DataSource = this.bankDataSet;
-            this.MainBindingSource.Position = 0;
-            // 
-            // bankDataSet
-            // 
-            this.bankDataSet.DataSetName = "BankDataSet";
-            this.bankDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bindingNavigator1
             // 
@@ -236,6 +153,16 @@
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             this.bindingNavigator1.Visible = false;
+            // 
+            // MainBindingSource
+            // 
+            this.MainBindingSource.DataSource = this.bankDataSet1;
+            this.MainBindingSource.Position = 0;
+            // 
+            // bankDataSet1
+            // 
+            this.bankDataSet1.DataSetName = "BankDataSet";
+            this.bankDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bindingNavigatorCountItem
             // 
@@ -340,23 +267,15 @@
             // formToolStripMenuItem
             // 
             this.formToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sendEmailsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.formToolStripMenuItem.Name = "formToolStripMenuItem";
             this.formToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.formToolStripMenuItem.Text = "Form";
             // 
-            // sendEmailsToolStripMenuItem
-            // 
-            this.sendEmailsToolStripMenuItem.Name = "sendEmailsToolStripMenuItem";
-            this.sendEmailsToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.sendEmailsToolStripMenuItem.Text = "Send Emails";
-            this.sendEmailsToolStripMenuItem.Click += new System.EventHandler(this.sendEmailsToolStripMenuItem_Click);
-            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -375,35 +294,35 @@
             // managersToolStripMenuItem
             // 
             this.managersToolStripMenuItem.Name = "managersToolStripMenuItem";
-            this.managersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.managersToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.managersToolStripMenuItem.Text = "Managers";
             this.managersToolStripMenuItem.Click += new System.EventHandler(this.managersToolStripMenuItem_Click);
             // 
             // clientsToolStripMenuItem
             // 
             this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.clientsToolStripMenuItem.Text = "Clients";
             this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // branchesToolStripMenuItem
             // 
             this.branchesToolStripMenuItem.Name = "branchesToolStripMenuItem";
-            this.branchesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.branchesToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.branchesToolStripMenuItem.Text = "Branches";
             this.branchesToolStripMenuItem.Click += new System.EventHandler(this.branchesToolStripMenuItem_Click);
             // 
             // accountsToolStripMenuItem
             // 
             this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.accountsToolStripMenuItem.Text = "Accounts";
             this.accountsToolStripMenuItem.Click += new System.EventHandler(this.accountsToolStripMenuItem_Click);
             // 
             // agreementsToolStripMenuItem
             // 
             this.agreementsToolStripMenuItem.Name = "agreementsToolStripMenuItem";
-            this.agreementsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.agreementsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.agreementsToolStripMenuItem.Text = "Agreements";
             this.agreementsToolStripMenuItem.Click += new System.EventHandler(this.agreementsToolStripMenuItem_Click);
             // 
@@ -556,25 +475,6 @@
             this.operationsToolStripMenuItem.Text = "Operations";
             this.operationsToolStripMenuItem.Click += new System.EventHandler(this.operationsToolStripMenuItem_Click);
             // 
-            // accountsBindingSource
-            // 
-            this.accountsBindingSource.DataSource = this.accountsBindingSource1;
-            // 
-            // agreementBindingSource
-            // 
-            this.agreementBindingSource.DataMember = "Agreement";
-            this.agreementBindingSource.DataSource = this.MainBindingSource;
-            // 
-            // branchesBindingSource
-            // 
-            this.branchesBindingSource.DataMember = "Branches";
-            this.branchesBindingSource.DataSource = this.MainBindingSource;
-            // 
-            // managersBindingSource
-            // 
-            this.managersBindingSource.DataMember = "Managers";
-            this.managersBindingSource.DataSource = this.MainBindingSource;
-            // 
             // label_Current_Base
             // 
             this.label_Current_Base.AutoSize = true;
@@ -648,26 +548,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // accountsTableAdapter
-            // 
-            this.accountsTableAdapter.ClearBeforeFill = true;
-            // 
-            // agreementTableAdapter
-            // 
-            this.agreementTableAdapter.ClearBeforeFill = true;
-            // 
-            // branchesTableAdapter
-            // 
-            this.branchesTableAdapter.ClearBeforeFill = true;
-            // 
-            // clientsTableAdapter
-            // 
-            this.clientsTableAdapter.ClearBeforeFill = true;
-            // 
-            // managersTableAdapter
-            // 
-            this.managersTableAdapter.ClearBeforeFill = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.comboBox_Filter);
@@ -681,11 +561,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter By";
             // 
-            // accountsBindingSource1
-            // 
-            this.accountsBindingSource1.DataMember = "Accounts";
-            this.accountsBindingSource1.DataSource = this.MainBindingSource;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBoxSearchBy);
@@ -698,6 +573,60 @@
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Searcher";
+            // 
+            // accountsBindingSource
+            // 
+            this.accountsBindingSource.DataMember = "Accounts";
+            this.accountsBindingSource.DataSource = this.MainBindingSource;
+            // 
+            // agreementBindingSource
+            // 
+            this.agreementBindingSource.DataMember = "Agreement";
+            this.agreementBindingSource.DataSource = this.MainBindingSource;
+            // 
+            // branchesBindingSource
+            // 
+            this.branchesBindingSource.DataMember = "Branches";
+            this.branchesBindingSource.DataSource = this.MainBindingSource;
+            // 
+            // managersBindingSource
+            // 
+            this.managersBindingSource.DataMember = "Managers";
+            this.managersBindingSource.DataSource = this.MainBindingSource;
+            // 
+            // operationsBindingSource
+            // 
+            this.operationsBindingSource.DataMember = "Operations";
+            this.operationsBindingSource.DataSource = this.MainBindingSource;
+            // 
+            // clientsBindingSource
+            // 
+            this.clientsBindingSource.DataMember = "Clients";
+            this.clientsBindingSource.DataSource = this.MainBindingSource;
+            // 
+            // accountsTableAdapter
+            // 
+            this.accountsTableAdapter.ClearBeforeFill = true;
+            // 
+            // agreementTableAdapter
+            // 
+            this.agreementTableAdapter.ClearBeforeFill = true;
+            // 
+            // branchesTableAdapter
+            // 
+            this.branchesTableAdapter.ClearBeforeFill = true;
+            // 
+            // managersTableAdapter
+            // 
+            this.managersTableAdapter.ClearBeforeFill = true;
+            // 
+            // operationsTableAdapter
+            // 
+            this.operationsTableAdapter.ClearBeforeFill = true;
+            // 
+            // clientsTableAdapter
+            // 
+            this.clientsTableAdapter.ClearBeforeFill = true;
             // 
             // Main
             // 
@@ -716,22 +645,22 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MainBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankDataSet1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accountsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.branchesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersBindingSource)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.accountsBindingSource1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.operationsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -764,17 +693,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem queryEditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agreementsToolStripMenuItem;
-        private BankDataSet bankDataSet;
-        private System.Windows.Forms.BindingSource accountsBindingSource;
-        private BankDataSetTableAdapters.AccountsTableAdapter accountsTableAdapter;
-        private System.Windows.Forms.BindingSource agreementBindingSource;
-        private BankDataSetTableAdapters.AgreementTableAdapter agreementTableAdapter;
-        private System.Windows.Forms.BindingSource branchesBindingSource;
-        private BankDataSetTableAdapters.BranchesTableAdapter branchesTableAdapter;
-        private System.Windows.Forms.BindingSource clientsBindingSource;
-        private BankDataSetTableAdapters.ClientsTableAdapter clientsTableAdapter;
-        private System.Windows.Forms.BindingSource managersBindingSource;
-        private BankDataSetTableAdapters.ManagersTableAdapter managersTableAdapter;
         private System.Windows.Forms.Label label_Current_Base;
         private System.Windows.Forms.ToolStripMenuItem clientFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrationToolStripMenuItem;
@@ -784,14 +702,6 @@
         private System.Windows.Forms.ToolStripMenuItem addNewManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn birthdayDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem formsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateInfoToolStripMenuItem;
@@ -807,11 +717,22 @@
         private System.Windows.Forms.ToolStripMenuItem requestsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem managerRequestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sendEmailsToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolStripMenuItem operationsToolStripMenuItem;
-        private System.Windows.Forms.BindingSource accountsBindingSource1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private BankDataSet bankDataSet1;
+        private System.Windows.Forms.BindingSource accountsBindingSource;
+        private BankDataSetTableAdapters.AccountsTableAdapter accountsTableAdapter;
+        private System.Windows.Forms.BindingSource agreementBindingSource;
+        private BankDataSetTableAdapters.AgreementTableAdapter agreementTableAdapter;
+        private System.Windows.Forms.BindingSource branchesBindingSource;
+        private BankDataSetTableAdapters.BranchesTableAdapter branchesTableAdapter;
+        private System.Windows.Forms.BindingSource managersBindingSource;
+        private BankDataSetTableAdapters.ManagersTableAdapter managersTableAdapter;
+        private System.Windows.Forms.BindingSource operationsBindingSource;
+        private BankDataSetTableAdapters.OperationsTableAdapter operationsTableAdapter;
+        private System.Windows.Forms.BindingSource clientsBindingSource;
+        private BankDataSetTableAdapters.ClientsTableAdapter clientsTableAdapter;
     }
 }
 

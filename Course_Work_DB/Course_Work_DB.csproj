@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -72,11 +72,10 @@
     <Compile Include="Account.Designer.cs">
       <DependentUpon>Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="BankDataSet.Designer.cs">
+    <Compile Include="BankDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BankDataSet.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>BankDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="ClientForm.cs">
       <SubType>Form</SubType>
@@ -146,19 +145,16 @@
     <EmbeddedResource Include="Statistic.resx">
       <DependentUpon>Statistic.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="BankDataSet.xsc">
-      <DependentUpon>BankDataSet.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="BankDataSet1.xsc">
+      <DependentUpon>BankDataSet1.xsd</DependentUpon>
     </None>
-    <None Include="BankDataSet.xsd">
+    <None Include="BankDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BankDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>BankDataSet1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="BankDataSet.xss">
-      <DependentUpon>BankDataSet.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="BankDataSet1.xss">
+      <DependentUpon>BankDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -175,15 +171,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Bank.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Bank_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>Bank.mdf</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -197,6 +184,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bank.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bank_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>Bank.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

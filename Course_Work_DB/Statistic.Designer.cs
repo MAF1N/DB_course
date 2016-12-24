@@ -31,7 +31,8 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 4D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 2D);
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -58,7 +59,8 @@
             "Clients City Statistic",
             "Client Years Old",
             "Type Of Account Statistic",
-            "Managers Efficiency"});
+            "Managers Efficiency",
+            "Money Income Statistic"});
             this.comboBox1.Location = new System.Drawing.Point(158, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(159, 21);
@@ -98,6 +100,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
             this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(332, 313);
             this.chart1.TabIndex = 4;

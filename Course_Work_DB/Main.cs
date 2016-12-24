@@ -31,16 +31,18 @@ namespace Course_Work_DB
 
         private void Main_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'bankDataSet.Agreement' table. You can move, or remove it, as needed.
-            this.agreementTableAdapter.Fill(this.bankDataSet.Agreement);
-            // TODO: This line of code loads data into the 'bankDataSet.Accounts' table. You can move, or remove it, as needed.
-            this.accountsTableAdapter.Fill(this.bankDataSet.Accounts);
-            // TODO: This line of code loads data into the 'bankDataSet.Branches' table. You can move, or remove it, as needed.
-            this.branchesTableAdapter.Fill(this.bankDataSet.Branches);
-            // TODO: This line of code loads data into the 'bankDataSet.Managers' table. You can move, or remove it, as needed.
-            this.managersTableAdapter.Fill(this.bankDataSet.Managers);
             // TODO: This line of code loads data into the 'bankDataSet.Clients' table. You can move, or remove it, as needed.
-            this.clientsTableAdapter.Fill(this.bankDataSet.Clients);
+            this.clientsTableAdapter.Fill(this.bankDataSet1.Clients);
+            // TODO: This line of code loads data into the 'bankDataSet.Operations' table. You can move, or remove it, as needed.
+            this.operationsTableAdapter.Fill(this.bankDataSet1.Operations);
+            // TODO: This line of code loads data into the 'bankDataSet.Managers' table. You can move, or remove it, as needed.
+            this.managersTableAdapter.Fill(this.bankDataSet1.Managers);
+            // TODO: This line of code loads data into the 'bankDataSet.Branches' table. You can move, or remove it, as needed.
+            this.branchesTableAdapter.Fill(this.bankDataSet1.Branches);
+            // TODO: This line of code loads data into the 'bankDataSet.Agreement' table. You can move, or remove it, as needed.
+            this.agreementTableAdapter.Fill(this.bankDataSet1.Agreement);
+            // TODO: This line of code loads data into the 'bankDataSet.Accounts' table. You can move, or remove it, as needed.
+            this.accountsTableAdapter.Fill(this.bankDataSet1.Accounts);
 
             comboBoxSearchBy.Items.AddRange(new String[] { "Full Name", "Address", "E-mail" });
             comboBoxSearchBy.SelectedIndex = 0;
@@ -54,36 +56,36 @@ namespace Course_Work_DB
 
         private void acceptChanges()
         {
-            bankDataSet.Clients.AcceptChanges();
-            bankDataSet.Branches.AcceptChanges();
-            bankDataSet.Managers.AcceptChanges();
-            bankDataSet.Accounts.AcceptChanges();
-            bankDataSet.Agreement.AcceptChanges();
-            bankDataSet.AcceptChanges();
+            bankDataSet1.Clients.AcceptChanges();
+            bankDataSet1.Branches.AcceptChanges();
+            bankDataSet1.Managers.AcceptChanges();
+            bankDataSet1.Accounts.AcceptChanges();
+            bankDataSet1.Agreement.AcceptChanges();
+            bankDataSet1.AcceptChanges();
         }
 
         private void updateTables()
         {
-            accountsTableAdapter.Update(bankDataSet.Accounts);
-            clientsTableAdapter.Update(bankDataSet.Clients);
-            branchesTableAdapter.Update(bankDataSet.Branches);
-            managersTableAdapter.Update(bankDataSet.Managers);
-            agreementTableAdapter.Update(bankDataSet.Agreement);
+            accountsTableAdapter.Update(bankDataSet1.Accounts);
+            clientsTableAdapter.Update(bankDataSet1.Clients);
+            branchesTableAdapter.Update(bankDataSet1.Branches);
+            managersTableAdapter.Update(bankDataSet1.Managers);
+            agreementTableAdapter.Update(bankDataSet1.Agreement);
             
         }
 
         private void fillTables()
         {
-            accountsTableAdapter.Fill(bankDataSet.Accounts);
-            clientsTableAdapter.Fill(bankDataSet.Clients);
-            branchesTableAdapter.Fill(bankDataSet.Branches);
-            managersTableAdapter.Fill(bankDataSet.Managers);
-            agreementTableAdapter.Fill(bankDataSet.Agreement);
+            accountsTableAdapter.Fill(bankDataSet1.Accounts);
+            clientsTableAdapter.Fill(bankDataSet1.Clients);
+            branchesTableAdapter.Fill(bankDataSet1.Branches);
+            managersTableAdapter.Fill(bankDataSet1.Managers);
+            agreementTableAdapter.Fill(bankDataSet1.Agreement);
         }
 
         private void getClientCities()
         {
-            comboBox_Filter.DataSource = bankDataSet.Clients.Select(s => s.City).Distinct().ToList();
+            comboBox_Filter.DataSource = bankDataSet1.Clients.Select(s => s.City).Distinct().ToList();
         }
 
         public DataTable GetDataTable(string SQL)
@@ -100,7 +102,7 @@ namespace Course_Work_DB
             }
         }
 
-        private void SendMessagesAboutStocks()
+        private void SendMessagesAboutStocksToAll()
         {
             //creating smtp client
             SmtpClient client = new SmtpClient();
@@ -145,6 +147,7 @@ namespace Course_Work_DB
             //bankDataSet.Dispose();
         }
 
+        #region Changing DataGridView DataSource
         private void managersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             updateTables();
@@ -186,14 +189,6 @@ namespace Course_Work_DB
             label_Current_Base.Text = "Accounts";
         }
 
-        private void queryEditToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //updateDB();
-            updateTables();
-            var qe = new QueryEdit();
-            qe.Show();
-        }
-
         private void agreementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bindingNavigator1.BindingSource = agreementBindingSource;
@@ -202,13 +197,23 @@ namespace Course_Work_DB
             //fillTables();
             updateTables();
         }
+        #endregion
 
+        private void queryEditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //updateDB();
+            updateTables();
+            var qe = new QueryEdit();
+            qe.Show();
+        }
+
+        #region Work With Clients
         private void registrationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var cl = new ClientForm();
             cl.ShowDialog();
             updateTables();
-            clientsTableAdapter.Fill(bankDataSet.Clients);
+            clientsTableAdapter.Fill(bankDataSet1.Clients);
             getClientCities();
 
         }
@@ -262,9 +267,9 @@ namespace Course_Work_DB
             clientsTableAdapter.DeleteQuery(
                 Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value)
                 );
-            clientsTableAdapter.Fill(bankDataSet.Clients);
+            clientsTableAdapter.Fill(bankDataSet1.Clients);
             //fillTables();
-            bankDataSet.AcceptChanges();
+            bankDataSet1.AcceptChanges();
             getClientCities();
         }
 
@@ -272,14 +277,16 @@ namespace Course_Work_DB
         {
 
         }
+        #endregion
 
+        #region Work With Managers
         private void addNewManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var mf = new ManagerForm();
             mf.ShowDialog();
             fillTables();
             updateTables();
-            bankDataSet.AcceptChanges();
+            bankDataSet1.AcceptChanges();
         }
 
         private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -304,7 +311,7 @@ namespace Course_Work_DB
             mf.ShowDialog();
             fillTables();
             updateTables();
-            bankDataSet.AcceptChanges();
+            bankDataSet1.AcceptChanges();
             //
         }
 
@@ -330,7 +337,9 @@ namespace Course_Work_DB
             fillTables();
             acceptChanges();
         }
+        #endregion
 
+        #region Work With Accounts
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var af = new Account();
@@ -356,13 +365,11 @@ namespace Course_Work_DB
                 Convert.ToDecimal(row[1]),          //decimal balance,
                 row[2].ToString(),                  //string type,
                 Convert.ToInt16(row[3]),            //int capital,
-                Convert.ToDateTime(row[4]),         //DateTime lastw,  
-                Convert.ToDateTime(row[5]),         // DateTime lastR,
-                Convert.ToInt32(row[6])             // int UserID
+                Convert.ToInt32(row[4])             // int UserID
                 );
             mf.ShowDialog();
             fillTables();
-            bankDataSet.AcceptChanges();
+            bankDataSet1.AcceptChanges();
             updateTables();
         }
 
@@ -385,17 +392,18 @@ namespace Course_Work_DB
             accountsTableAdapter.DeleteQuery(
                 Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value)
                 );
-            accountsTableAdapter.Fill(bankDataSet.Accounts);
+            accountsTableAdapter.Fill(bankDataSet1.Accounts);
             //bankDataSet.AcceptChanges();
             updateTables();
-            bankDataSet.AcceptChanges();
+            bankDataSet1.AcceptChanges();
         }
+        #endregion
 
         private void fillBy1ToolStripButton_Click(object sender, EventArgs e)
         {
             try
             {
-                this.clientsTableAdapter.FillBy1(this.bankDataSet.Clients);
+                this.clientsTableAdapter.FillBy1(this.bankDataSet1.Clients);
             }
             catch (System.Exception ex)
             {
@@ -403,7 +411,7 @@ namespace Course_Work_DB
             }
 
         }
-
+        #region Searching In DataGridView
         private void searchInDataGrid(int column)
         {
             for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -459,7 +467,9 @@ namespace Course_Work_DB
                 }
             }
         }
-        //SORT IN DATAGRIDVIEW
+        #endregion
+
+        #region SORT IN DATAGRIDVIEW
         private void dataGridView1_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
         {
             if (e.Column.Index == 1)
@@ -469,6 +479,7 @@ namespace Course_Work_DB
             }
             else
             {
+                #region clientsSort
                 if (dataGridView1.DataSource == clientsBindingSource) //clients Sort
                 {
                     if (e.Column.Index == 8)
@@ -482,6 +493,8 @@ namespace Course_Work_DB
                         e.Handled = true;
                     }
                 }
+                #endregion
+                #region accountSort
                 else if (dataGridView1.DataSource == accountsBindingSource) //accounts sort
                 {
                     if (e.Column.Index == 4 || e.Column.Index == 7)
@@ -494,17 +507,14 @@ namespace Course_Work_DB
                         e.SortResult = Decimal.Parse(e.CellValue1.ToString()).CompareTo(Decimal.Parse(e.CellValue2.ToString()));
                         e.Handled = true;
                     }
-                    else if (e.Column.Index == 5 || e.Column.Index == 6)
-                    {
-                        e.SortResult = DateTime.Parse(e.CellValue1.ToString()).CompareTo(DateTime.Parse(e.CellValue2.ToString()));
-                        e.Handled = true;
-                    }
                     else
                     {
                         e.SortResult = e.CellValue1.ToString().CompareTo(e.CellValue2.ToString());
                         e.Handled = true;
                     }
                 }
+                #endregion
+                #region agreementSort
                 else if (dataGridView1.DataSource == agreementBindingSource) //agreement
                 {
                     if (e.Column.Index==2||e.Column.Index==3||e.Column.Index==4)
@@ -518,6 +528,8 @@ namespace Course_Work_DB
                         e.Handled = true;
                     }
                 }
+                #endregion
+                #region managersSort
                 else if (dataGridView1.DataSource == managersBindingSource) //managers
                 {
                     if (e.Column.Index==3||e.Column.Index==6)
@@ -536,6 +548,7 @@ namespace Course_Work_DB
                         e.Handled = true;
                     }
                 }
+                #endregion
                 else
                 {
                     e.SortResult = e.CellValue1.ToString().CompareTo(e.CellValue2.ToString());
@@ -543,6 +556,7 @@ namespace Course_Work_DB
                 }
             }
         }
+        #endregion
 
         private void comboBox_Filter_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -553,7 +567,7 @@ namespace Course_Work_DB
         {
             if (dataGridView1.DataSource == clientsBindingSource)
             {
-                clientsTableAdapter.FilterByCity(bankDataSet.Clients, comboBox_Filter.SelectedItem.ToString());
+                clientsTableAdapter.FilterByCity(bankDataSet1.Clients, comboBox_Filter.SelectedItem.ToString());
             }
         }
 
@@ -561,7 +575,7 @@ namespace Course_Work_DB
         {
             if (dataGridView1.DataSource == clientsBindingSource)
             {
-                clientsTableAdapter.Fill(bankDataSet.Clients);
+                clientsTableAdapter.Fill(bankDataSet1.Clients);
             }
         }
 
@@ -581,7 +595,7 @@ namespace Course_Work_DB
             SqlConnection sqlconn = new SqlConnection(ConnectionString);
             sqlconn.Open();
             SqlDataAdapter dAdapter = clientsTableAdapter.Adapter;
-            dAdapter.Update(bankDataSet.Clients);
+            dAdapter.Update(bankDataSet1.Clients);
             sqlconn.Close();
         }
 
@@ -601,6 +615,11 @@ namespace Course_Work_DB
             var doc1 = new Document();
             BaseFont baseFont = BaseFont.CreateFont("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
+            
+            //checking doc
+            if (File.Exists("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\UserRequests.pdf"))
+                File.Delete("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\UserRequests.pdf");
+
             PdfWriter.GetInstance(doc1, new FileStream("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\UserRequests.pdf", FileMode.OpenOrCreate));
             
             PdfPTable table = new PdfPTable(4);
@@ -655,12 +674,17 @@ namespace Course_Work_DB
             var doc1 = new Document();
             BaseFont baseFont = BaseFont.CreateFont("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
-
+            
+            
+            //checking the doc
+            if (File.Exists("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\ManagerRequest.pdf"))
+                File.Delete("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\ManagerRequest.pdf");
             PdfWriter.GetInstance(doc1, new FileStream("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\ManagerRequest.pdf", FileMode.Create));
             PdfPTable table = new PdfPTable(4);
             PdfPTable table2 = new PdfPTable(2);
             table.SetWidthPercentage(new float[] { 120, 120, 120, 120 }, doc1.PageSize);
             table2.SetWidthPercentage(new float[] { 240, 240 }, doc1.PageSize);
+
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 string query = "SELECT [FullName], [Phone], Branches.[City], Branches.[Address] FROM Managers,Branches WHERE Managers.[Branche_Id]=Branches.[Id]";
@@ -744,11 +768,7 @@ namespace Course_Work_DB
                 doc1.Close();
             }
             MessageBox.Show("Отчет менеджеров успешно создан.");
-        }
-
-        private void sendEmailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SendMessagesAboutStocks();
+            doc1.OpenDocument();
         }
 
         private void operationsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -756,8 +776,7 @@ namespace Course_Work_DB
             Operation o = new Operation();
             o.ShowDialog();
             updateTables();
-            accountsTableAdapter.Fill(bankDataSet.Accounts);
-
+            accountsTableAdapter.Fill(bankDataSet1.Accounts);
             updateTables();
         }
     }
