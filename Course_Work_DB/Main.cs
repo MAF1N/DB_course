@@ -8,15 +8,13 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Net.Mail;
-using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Course_Work_DB
 {
     public partial class Main : Form
     {
-        const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\LABS\Курс 2\Семестр 1\Course_Work_DB\Course_Work_DB\Bank.mdf';Integrated Security = True";
-
-
+        const string ConnectionString =@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\LABS\Курс 2\Семестр 1\Course_Work_DB\Course_Work_DB\Bank.mdf';Integrated Security = True";     
 
 
         public Main()
@@ -54,6 +52,7 @@ namespace Course_Work_DB
             dataGridView1.AutoGenerateColumns = true;
         }
 
+        #region Work With DataSets and TableAdapters
         private void acceptChanges()
         {
             bankDataSet1.Clients.AcceptChanges();
@@ -82,13 +81,14 @@ namespace Course_Work_DB
             managersTableAdapter.Fill(bankDataSet1.Managers);
             agreementTableAdapter.Fill(bankDataSet1.Agreement);
         }
+        #endregion
 
         private void getClientCities()
         {
             comboBox_Filter.DataSource = bankDataSet1.Clients.Select(s => s.City).Distinct().ToList();
         }
 
-        public DataTable GetDataTable(string SQL)
+        private DataTable getDataTable(string SQL)
         {
             SqlCommand command = new SqlCommand(SQL);
             SqlConnection conn = new SqlConnection(ConnectionString);
@@ -102,7 +102,7 @@ namespace Course_Work_DB
             }
         }
 
-        private void SendMessagesAboutStocksToAll()
+        private void sendMessagesAboutStocksToAll()
         {
             //creating smtp client
             SmtpClient client = new SmtpClient();
@@ -115,7 +115,7 @@ namespace Course_Work_DB
             client.Credentials = new System.Net.NetworkCredential("nikita.ghost.yar@gmail.com", "1n2i3k4i5t6a");
 
             //getting emails
-            DataTable dt =GetDataTable("SELECT [Full Name], [E-mail], [Type], Accounts.[Capitalisation], [Stock Starts], [Stock Ends], [Condition], [Result] FROM Clients, Accounts, Stocks Where [Clients].[Id]=Accounts.[UserId] AND Accounts.Type=Stocks.[Account Type] AND Accounts.[Capitalisation]=Stocks.[Capitalisation]");
+            DataTable dt =getDataTable("SELECT [Full Name], [E-mail], [Type], Accounts.[Capitalisation], [Stock Starts], [Stock Ends], [Condition], [Result] FROM Clients, Accounts, Stocks Where [Clients].[Id]=Accounts.[UserId] AND Accounts.Type=Stocks.[Account Type] AND Accounts.[Capitalisation]=Stocks.[Capitalisation]");
 
             //Sending message
             foreach (DataRow dr in dt.Rows) {
@@ -411,6 +411,7 @@ namespace Course_Work_DB
             }
 
         }
+
         #region Searching In DataGridView
         private void searchInDataGrid(int column)
         {
@@ -613,14 +614,15 @@ namespace Course_Work_DB
         private void userRequestToolStripMenuItem_Click(object sender, EventArgs e)
         { 
             var doc1 = new Document();
+            string fileString = "C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\UserRequests.pdf";
             BaseFont baseFont = BaseFont.CreateFont("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
             
             //checking doc
-            if (File.Exists("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\UserRequests.pdf"))
-                File.Delete("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\UserRequests.pdf");
+            if (File.Exists(fileString))
+                File.Delete(fileString);
 
-            PdfWriter.GetInstance(doc1, new FileStream("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\UserRequests.pdf", FileMode.OpenOrCreate));
+            PdfWriter.GetInstance(doc1, new FileStream(fileString, FileMode.OpenOrCreate));
             
             PdfPTable table = new PdfPTable(4);
             table.SetWidthPercentage(new float[] { 120,120,120,120 }, doc1.PageSize);
@@ -666,20 +668,22 @@ namespace Course_Work_DB
                 doc1.Add(p);
                 doc1.Close();
             }
-            MessageBox.Show("Документ успешно создан");   
+            MessageBox.Show("Документ успешно создан ");
+            Process.Start(fileString);
         }
 
         private void managerRequestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var doc1 = new Document();
+            string fileString = "C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\ManagerRequest.pdf";
             BaseFont baseFont = BaseFont.CreateFont("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
             
             
             //checking the doc
-            if (File.Exists("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\ManagerRequest.pdf"))
-                File.Delete("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\ManagerRequest.pdf");
-            PdfWriter.GetInstance(doc1, new FileStream("C:\\LABS\\Курс 2\\Семестр 1\\Course_Work_DB\\Course_Work_DB\\ManagerRequest.pdf", FileMode.Create));
+            if (File.Exists(fileString))
+                File.Delete(fileString);
+            PdfWriter.GetInstance(doc1, new FileStream(fileString, FileMode.Create));
             PdfPTable table = new PdfPTable(4);
             PdfPTable table2 = new PdfPTable(2);
             table.SetWidthPercentage(new float[] { 120, 120, 120, 120 }, doc1.PageSize);
@@ -768,7 +772,7 @@ namespace Course_Work_DB
                 doc1.Close();
             }
             MessageBox.Show("Отчет менеджеров успешно создан.");
-            doc1.OpenDocument();
+            Process.Start(fileString);
         }
 
         private void operationsToolStripMenuItem_Click(object sender, EventArgs e)
