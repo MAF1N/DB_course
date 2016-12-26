@@ -82,10 +82,5 @@ namespace Course_Work_DB
            
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            accountsBindingSource.DataSource = bankDataSet.Accounts;
-            accountsBindingSource.Filter = accIdCombo.Text;
-        }
     }
 }

@@ -94,7 +94,6 @@
             this.accIdCombo.Size = new System.Drawing.Size(121, 21);
             this.accIdCombo.TabIndex = 5;
             this.accIdCombo.ValueMember = "Id";
-            this.accIdCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // accountsBindingSource
             // 
@@ -142,6 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Honeydew;
             this.ClientSize = new System.Drawing.Size(284, 120);
             this.Controls.Add(this.typeCombo);
             this.Controls.Add(this.textBox1);

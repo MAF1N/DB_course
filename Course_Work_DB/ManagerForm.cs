@@ -9,6 +9,8 @@ namespace Course_Work_DB
         const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\LABS\Курс 2\Семестр 1\Course_Work_DB\Course_Work_DB\Bank.mdf';Integrated Security = True";
         private readonly bool edit;
         private readonly int id;
+
+
         public ManagerForm()
         {
             InitializeComponent();

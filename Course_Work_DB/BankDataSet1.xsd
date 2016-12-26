@@ -101,7 +101,7 @@ SELECT Id, Balance, Type, Capitalisation, UserId FROM Accounts WHERE (Id = @Id)<
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="BankConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateBalanceAdd" Modifier="Public" Name="UpdateBalanceAdd" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateBalanceAdd">
+              <DbSource ConnectionRef="BankConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateBalanceAdd" Modifier="Public" Name="UpdateBalanceAdd" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateBalanceAdd">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[Accounts] SET [Balance] = [Balance]+@bal WHERE Id=@Id</CommandText>
@@ -112,7 +112,7 @@ SELECT Id, Balance, Type, Capitalisation, UserId FROM Accounts WHERE (Id = @Id)<
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="BankConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateBalanceMinus" Modifier="Public" Name="UpdateBalanceMinus" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="UpdateBalanceMinus">
+              <DbSource ConnectionRef="BankConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateBalanceMinus" Modifier="Public" Name="UpdateBalanceMinus" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateBalanceMinus">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[Accounts] SET [Balance] = [Balance]-@bal WHERE Id=@Id</CommandText>
@@ -123,7 +123,7 @@ SELECT Id, Balance, Type, Capitalisation, UserId FROM Accounts WHERE (Id = @Id)<
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="BankConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="BankConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[Accounts] SET [Balance] = @Balance, [Type] = @Type, [Capitalisation] = @Capitalisation, [UserId] = @UserId WHERE ([Id] = @Id);</CommandText>
@@ -199,7 +199,19 @@ SELECT Id, Account_Id, Manager_Id, Duration, Start_date FROM Agreement WHERE (Id
               <Mapping SourceColumn="Duration" DataSetColumn="Duration" />
               <Mapping SourceColumn="Start_date" DataSetColumn="Start_date" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="BankConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertQuery">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[Agreement] ([Account_Id], [Manager_Id]) VALUES (@Account_Id, @Manager_Id);</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Account_Id" ColumnName="Account_Id" DataSourceName="[C:\LABS\КУРС 2\СЕМЕСТР 1\COURSE_WORK_DB\COURSE_WORK_DB\BANK.MDF].dbo.Agreement" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Account_Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Account_Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Manager_Id" ColumnName="Manager_Id" DataSourceName="[C:\LABS\КУРС 2\СЕМЕСТР 1\COURSE_WORK_DB\COURSE_WORK_DB\BANK.MDF].dbo.Agreement" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Manager_Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Manager_Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BranchesTableAdapter" GeneratorDataComponentClassName="BranchesTableAdapter" Name="Branches" UserDataComponentName="BranchesTableAdapter">
             <MainSource>
@@ -675,7 +687,7 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
   <xs:element name="BankDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="BankDataSet" msprop:Generator_UserDSName="BankDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Accounts" msprop:Generator_TableClassName="AccountsDataTable" msprop:Generator_TableVarName="tableAccounts" msprop:Generator_TablePropName="Accounts" msprop:Generator_RowDeletingName="AccountsRowDeleting" msprop:Generator_RowChangingName="AccountsRowChanging" msprop:Generator_RowEvHandlerName="AccountsRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountsRowDeleted" msprop:Generator_UserTableName="Accounts" msprop:Generator_RowChangedName="AccountsRowChanged" msprop:Generator_RowEvArgName="AccountsRowChangeEvent" msprop:Generator_RowClassName="AccountsRow">
+        <xs:element name="Accounts" msprop:Generator_TableClassName="AccountsDataTable" msprop:Generator_TableVarName="tableAccounts" msprop:Generator_RowChangedName="AccountsRowChanged" msprop:Generator_TablePropName="Accounts" msprop:Generator_RowDeletingName="AccountsRowDeleting" msprop:Generator_RowChangingName="AccountsRowChanging" msprop:Generator_RowEvHandlerName="AccountsRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountsRowDeleted" msprop:Generator_RowClassName="AccountsRow" msprop:Generator_UserTableName="Accounts" msprop:Generator_RowEvArgName="AccountsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -692,7 +704,7 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Agreement" msprop:Generator_TableClassName="AgreementDataTable" msprop:Generator_TableVarName="tableAgreement" msprop:Generator_TablePropName="Agreement" msprop:Generator_RowDeletingName="AgreementRowDeleting" msprop:Generator_RowChangingName="AgreementRowChanging" msprop:Generator_RowEvHandlerName="AgreementRowChangeEventHandler" msprop:Generator_RowDeletedName="AgreementRowDeleted" msprop:Generator_UserTableName="Agreement" msprop:Generator_RowChangedName="AgreementRowChanged" msprop:Generator_RowEvArgName="AgreementRowChangeEvent" msprop:Generator_RowClassName="AgreementRow">
+        <xs:element name="Agreement" msprop:Generator_TableClassName="AgreementDataTable" msprop:Generator_TableVarName="tableAgreement" msprop:Generator_RowChangedName="AgreementRowChanged" msprop:Generator_TablePropName="Agreement" msprop:Generator_RowDeletingName="AgreementRowDeleting" msprop:Generator_RowChangingName="AgreementRowChanging" msprop:Generator_RowEvHandlerName="AgreementRowChangeEventHandler" msprop:Generator_RowDeletedName="AgreementRowDeleted" msprop:Generator_RowClassName="AgreementRow" msprop:Generator_UserTableName="Agreement" msprop:Generator_RowEvArgName="AgreementRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -703,7 +715,7 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Branches" msprop:Generator_TableClassName="BranchesDataTable" msprop:Generator_TableVarName="tableBranches" msprop:Generator_TablePropName="Branches" msprop:Generator_RowDeletingName="BranchesRowDeleting" msprop:Generator_RowChangingName="BranchesRowChanging" msprop:Generator_RowEvHandlerName="BranchesRowChangeEventHandler" msprop:Generator_RowDeletedName="BranchesRowDeleted" msprop:Generator_UserTableName="Branches" msprop:Generator_RowChangedName="BranchesRowChanged" msprop:Generator_RowEvArgName="BranchesRowChangeEvent" msprop:Generator_RowClassName="BranchesRow">
+        <xs:element name="Branches" msprop:Generator_TableClassName="BranchesDataTable" msprop:Generator_TableVarName="tableBranches" msprop:Generator_RowChangedName="BranchesRowChanged" msprop:Generator_TablePropName="Branches" msprop:Generator_RowDeletingName="BranchesRowDeleting" msprop:Generator_RowChangingName="BranchesRowChanging" msprop:Generator_RowEvHandlerName="BranchesRowChangeEventHandler" msprop:Generator_RowDeletedName="BranchesRowDeleted" msprop:Generator_RowClassName="BranchesRow" msprop:Generator_UserTableName="Branches" msprop:Generator_RowEvArgName="BranchesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -724,7 +736,7 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Clients" msprop:Generator_TableClassName="ClientsDataTable" msprop:Generator_TableVarName="tableClients" msprop:Generator_TablePropName="Clients" msprop:Generator_RowDeletingName="ClientsRowDeleting" msprop:Generator_RowChangingName="ClientsRowChanging" msprop:Generator_RowEvHandlerName="ClientsRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientsRowDeleted" msprop:Generator_UserTableName="Clients" msprop:Generator_RowChangedName="ClientsRowChanged" msprop:Generator_RowEvArgName="ClientsRowChangeEvent" msprop:Generator_RowClassName="ClientsRow">
+        <xs:element name="Clients" msprop:Generator_TableClassName="ClientsDataTable" msprop:Generator_TableVarName="tableClients" msprop:Generator_RowChangedName="ClientsRowChanged" msprop:Generator_TablePropName="Clients" msprop:Generator_RowDeletingName="ClientsRowDeleting" msprop:Generator_RowChangingName="ClientsRowChanging" msprop:Generator_RowEvHandlerName="ClientsRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientsRowDeleted" msprop:Generator_RowClassName="ClientsRow" msprop:Generator_UserTableName="Clients" msprop:Generator_RowEvArgName="ClientsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -774,7 +786,7 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Managers" msprop:Generator_TableClassName="ManagersDataTable" msprop:Generator_TableVarName="tableManagers" msprop:Generator_TablePropName="Managers" msprop:Generator_RowDeletingName="ManagersRowDeleting" msprop:Generator_RowChangingName="ManagersRowChanging" msprop:Generator_RowEvHandlerName="ManagersRowChangeEventHandler" msprop:Generator_RowDeletedName="ManagersRowDeleted" msprop:Generator_UserTableName="Managers" msprop:Generator_RowChangedName="ManagersRowChanged" msprop:Generator_RowEvArgName="ManagersRowChangeEvent" msprop:Generator_RowClassName="ManagersRow">
+        <xs:element name="Managers" msprop:Generator_TableClassName="ManagersDataTable" msprop:Generator_TableVarName="tableManagers" msprop:Generator_RowChangedName="ManagersRowChanged" msprop:Generator_TablePropName="Managers" msprop:Generator_RowDeletingName="ManagersRowDeleting" msprop:Generator_RowChangingName="ManagersRowChanging" msprop:Generator_RowEvHandlerName="ManagersRowChangeEventHandler" msprop:Generator_RowDeletedName="ManagersRowDeleted" msprop:Generator_RowClassName="ManagersRow" msprop:Generator_UserTableName="Managers" msprop:Generator_RowEvArgName="ManagersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -798,7 +810,7 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Operations" msprop:Generator_TableClassName="OperationsDataTable" msprop:Generator_TableVarName="tableOperations" msprop:Generator_TablePropName="Operations" msprop:Generator_RowDeletingName="OperationsRowDeleting" msprop:Generator_RowChangingName="OperationsRowChanging" msprop:Generator_RowEvHandlerName="OperationsRowChangeEventHandler" msprop:Generator_RowDeletedName="OperationsRowDeleted" msprop:Generator_UserTableName="Operations" msprop:Generator_RowChangedName="OperationsRowChanged" msprop:Generator_RowEvArgName="OperationsRowChangeEvent" msprop:Generator_RowClassName="OperationsRow">
+        <xs:element name="Operations" msprop:Generator_TableClassName="OperationsDataTable" msprop:Generator_TableVarName="tableOperations" msprop:Generator_RowChangedName="OperationsRowChanged" msprop:Generator_TablePropName="Operations" msprop:Generator_RowDeletingName="OperationsRowDeleting" msprop:Generator_RowChangingName="OperationsRowChanging" msprop:Generator_RowEvHandlerName="OperationsRowChangeEventHandler" msprop:Generator_RowDeletedName="OperationsRowDeleted" msprop:Generator_RowClassName="OperationsRow" msprop:Generator_UserTableName="Operations" msprop:Generator_RowEvArgName="OperationsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -816,7 +828,7 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Stocks" msprop:Generator_TableClassName="StocksDataTable" msprop:Generator_TableVarName="tableStocks" msprop:Generator_TablePropName="Stocks" msprop:Generator_RowDeletingName="StocksRowDeleting" msprop:Generator_RowChangingName="StocksRowChanging" msprop:Generator_RowEvHandlerName="StocksRowChangeEventHandler" msprop:Generator_RowDeletedName="StocksRowDeleted" msprop:Generator_UserTableName="Stocks" msprop:Generator_RowChangedName="StocksRowChanged" msprop:Generator_RowEvArgName="StocksRowChangeEvent" msprop:Generator_RowClassName="StocksRow">
+        <xs:element name="Stocks" msprop:Generator_TableClassName="StocksDataTable" msprop:Generator_TableVarName="tableStocks" msprop:Generator_RowChangedName="StocksRowChanged" msprop:Generator_TablePropName="Stocks" msprop:Generator_RowDeletingName="StocksRowDeleting" msprop:Generator_RowChangingName="StocksRowChanging" msprop:Generator_RowEvHandlerName="StocksRowChangeEventHandler" msprop:Generator_RowDeletedName="StocksRowDeleted" msprop:Generator_RowClassName="StocksRow" msprop:Generator_UserTableName="Stocks" msprop:Generator_RowEvArgName="StocksRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -880,11 +892,11 @@ SELECT Id, [Account Type], Capitalisation, [Stock Starts], [Stock Ends], Conditi
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Table_Clients" msdata:parent="Clients" msdata:child="Accounts" msdata:parentkey="Id" msdata:childkey="UserId" msprop:Generator_UserChildTable="Accounts" msprop:Generator_ChildPropName="GetAccountsRows" msprop:Generator_UserRelationName="FK_Table_Clients" msprop:Generator_RelationVarName="relationFK_Table_Clients" msprop:Generator_UserParentTable="Clients" msprop:Generator_ParentPropName="ClientsRow" />
-      <msdata:Relationship name="FK_Agreement_ToTableAccounts" msdata:parent="Accounts" msdata:child="Agreement" msdata:parentkey="Id" msdata:childkey="Account_Id" msprop:Generator_UserChildTable="Agreement" msprop:Generator_ChildPropName="GetAgreementRows" msprop:Generator_UserRelationName="FK_Agreement_ToTableAccounts" msprop:Generator_ParentPropName="AccountsRow" msprop:Generator_RelationVarName="relationFK_Agreement_ToTableAccounts" msprop:Generator_UserParentTable="Accounts" />
-      <msdata:Relationship name="FK_Agreement_ToTableManagers" msdata:parent="Managers" msdata:child="Agreement" msdata:parentkey="Id" msdata:childkey="Manager_Id" msprop:Generator_UserChildTable="Agreement" msprop:Generator_ChildPropName="GetAgreementRows" msprop:Generator_UserRelationName="FK_Agreement_ToTableManagers" msprop:Generator_RelationVarName="relationFK_Agreement_ToTableManagers" msprop:Generator_UserParentTable="Managers" msprop:Generator_ParentPropName="ManagersRow" />
-      <msdata:Relationship name="FK_Managers_ToTableBranches" msdata:parent="Branches" msdata:child="Managers" msdata:parentkey="Id" msdata:childkey="Branche_Id" msprop:Generator_UserChildTable="Managers" msprop:Generator_ChildPropName="GetManagersRows" msprop:Generator_UserRelationName="FK_Managers_ToTableBranches" msprop:Generator_ParentPropName="BranchesRow" msprop:Generator_RelationVarName="relationFK_Managers_ToTableBranches" msprop:Generator_UserParentTable="Branches" />
-      <msdata:Relationship name="FK_Operations_ToAccounts" msdata:parent="Accounts" msdata:child="Operations" msdata:parentkey="Id" msdata:childkey="Account_Id" msprop:Generator_UserChildTable="Operations" msprop:Generator_ChildPropName="GetOperationsRows" msprop:Generator_UserRelationName="FK_Operations_ToAccounts" msprop:Generator_ParentPropName="AccountsRow" msprop:Generator_RelationVarName="relationFK_Operations_ToAccounts" msprop:Generator_UserParentTable="Accounts" />
+      <msdata:Relationship name="FK_Table_Clients" msdata:parent="Clients" msdata:child="Accounts" msdata:parentkey="Id" msdata:childkey="UserId" msprop:Generator_UserChildTable="Accounts" msprop:Generator_ChildPropName="GetAccountsRows" msprop:Generator_UserRelationName="FK_Table_Clients" msprop:Generator_ParentPropName="ClientsRow" msprop:Generator_RelationVarName="relationFK_Table_Clients" msprop:Generator_UserParentTable="Clients" />
+      <msdata:Relationship name="FK_Agreement_ToTableAccounts" msdata:parent="Accounts" msdata:child="Agreement" msdata:parentkey="Id" msdata:childkey="Account_Id" msprop:Generator_UserChildTable="Agreement" msprop:Generator_ChildPropName="GetAgreementRows" msprop:Generator_UserRelationName="FK_Agreement_ToTableAccounts" msprop:Generator_RelationVarName="relationFK_Agreement_ToTableAccounts" msprop:Generator_UserParentTable="Accounts" msprop:Generator_ParentPropName="AccountsRow" />
+      <msdata:Relationship name="FK_Agreement_ToTableManagers" msdata:parent="Managers" msdata:child="Agreement" msdata:parentkey="Id" msdata:childkey="Manager_Id" msprop:Generator_UserChildTable="Agreement" msprop:Generator_ChildPropName="GetAgreementRows" msprop:Generator_UserRelationName="FK_Agreement_ToTableManagers" msprop:Generator_ParentPropName="ManagersRow" msprop:Generator_RelationVarName="relationFK_Agreement_ToTableManagers" msprop:Generator_UserParentTable="Managers" />
+      <msdata:Relationship name="FK_Managers_ToTableBranches" msdata:parent="Branches" msdata:child="Managers" msdata:parentkey="Id" msdata:childkey="Branche_Id" msprop:Generator_UserChildTable="Managers" msprop:Generator_ChildPropName="GetManagersRows" msprop:Generator_UserRelationName="FK_Managers_ToTableBranches" msprop:Generator_RelationVarName="relationFK_Managers_ToTableBranches" msprop:Generator_UserParentTable="Branches" msprop:Generator_ParentPropName="BranchesRow" />
+      <msdata:Relationship name="FK_Operations_ToAccounts" msdata:parent="Accounts" msdata:child="Operations" msdata:parentkey="Id" msdata:childkey="Account_Id" msprop:Generator_UserChildTable="Operations" msprop:Generator_ChildPropName="GetOperationsRows" msprop:Generator_UserRelationName="FK_Operations_ToAccounts" msprop:Generator_RelationVarName="relationFK_Operations_ToAccounts" msprop:Generator_UserParentTable="Accounts" msprop:Generator_ParentPropName="AccountsRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
